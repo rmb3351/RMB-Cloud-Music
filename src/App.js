@@ -1,14 +1,15 @@
 import RMBAppHeader from "components/app-header";
 import RMBAppFooter from "components/app-footer";
 import { Routes } from "@/router/Routes";
+import { HashRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <HashRouter className="App">
       <RMBAppHeader></RMBAppHeader>
       <Routes></Routes>
       <RMBAppFooter></RMBAppFooter>
-    </div>
+    </HashRouter>
   );
 }
 
