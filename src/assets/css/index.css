@@ -3,3 +3,15 @@
   color: #fff !important;
   text-decoration: none;
 }
+/* 下面的三角小图标 */
+.nav-active::after {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 64px;
+  content: "";
+  width: 12px;
+  height: 7px;
+  margin-left: -6px;
+  background: url(../imgs/sprite_01.png) no-repeat -226px 0;
+}
