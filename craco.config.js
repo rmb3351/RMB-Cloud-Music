@@ -7,6 +7,7 @@ module.exports = {
       "@": resolve("src"),
       components: resolve("src/components"),
       views: resolve("src/views"),
+      assets: resolve("src/assets"),
     },
   },
 };

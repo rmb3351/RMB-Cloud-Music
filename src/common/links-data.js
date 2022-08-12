@@ -22,13 +22,33 @@ const bottomLeftLinkMaps = [
 
 /* 底部右侧上部链接映射 */
 const bottomRightUpLinkMaps = [
-  { link: "/", title: "服务条款", comp: "a" },
-  { link: "/", title: "隐私政策", comp: "a" },
-  { link: "/", title: "儿童隐私政策", comp: "a" },
-  { link: "/", title: "版权投诉", comp: "a" },
-  { link: "/", title: "投资者关系", comp: "a" },
-  { link: "/", title: "广告合作", comp: "a" },
-  { link: "/", title: "廉政举报", comp: "a" },
-  { link: "/", title: "联系我们", comp: "a" },
+  { link: "/", title: "自媒体", comp: "a", className: "self-media" },
+  { link: "/", title: "用户认证", comp: "a", className: "user-verify" },
+  {
+    link: "/",
+    title: "独立音乐人",
+    comp: "a",
+    className: "independent-musician",
+  },
+  { link: "/", title: "赞赏", comp: "a", className: "like" },
+  { link: "/", title: "视频奖励", comp: "a", className: "video-reward" },
 ];
-export { linkMaps, bottomLeftLinkMaps };
+
+const bottomRightDownLinkMaps = [
+  { link: "/", title: "自媒体", comp: "a", className: "self-media-text" },
+  { link: "/", title: "用户认证", comp: "a", className: "user-verify-text" },
+  {
+    link: "/",
+    title: "独立音乐人",
+    comp: "a",
+    className: "independent-musician-text",
+  },
+  { link: "/", title: "赞赏", comp: "a", className: "like-text" },
+  { link: "/", title: "视频奖励", comp: "a", className: "video-reward-text" },
+];
+export {
+  linkMaps,
+  bottomLeftLinkMaps,
+  bottomRightUpLinkMaps,
+  bottomRightDownLinkMaps,
+};

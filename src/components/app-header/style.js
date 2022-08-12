@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import sprite01 from "@/assets/imgs/sprite_01.png";
+import sprite01 from "assets/imgs/sprite_01.png";
 
 const HeaderWrapper = styled.div`
   background-color: #242424;

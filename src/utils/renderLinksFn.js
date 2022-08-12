@@ -6,7 +6,9 @@ export function renderLinks(links, activeName = "active") {
       {links.map((link) =>
         link.comp === "a" ? (
           <li key={link.title}>
-            <a href={link.link}>{link.title}</a>
+            <a href={link.link} className={link.className || ""}>
+              {!link.className ? link.title : ""}
+            </a>
           </li>
         ) : (
           <li key={link.title}>

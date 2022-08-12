@@ -1,6 +1,10 @@
 import React, { memo } from "react";
 import { ContentLeft, ContentRight, FooterWrapper } from "./style";
-import { bottomLeftLinkMaps } from "@/common/links-data.js";
+import {
+  bottomLeftLinkMaps,
+  bottomRightUpLinkMaps,
+  bottomRightDownLinkMaps,
+} from "@/common/links-data.js";
 import { renderLinks } from "../../utils/renderLinksFn";
 
 const RMBAppFooter = memo(() => {
@@ -21,7 +25,10 @@ const RMBAppFooter = memo(() => {
           </div>
           <span>不联网宗教信息服务许可怔：汉（2022）0000120</span>
         </ContentLeft>
-        <ContentRight>hhhhhhhhhhhhh</ContentRight>
+        <ContentRight>
+          {renderLinks(bottomRightUpLinkMaps)}
+          {renderLinks(bottomRightDownLinkMaps)}
+        </ContentRight>
       </div>
     </FooterWrapper>
   );

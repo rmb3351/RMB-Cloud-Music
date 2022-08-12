@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import sprite01 from "@/assets/imgs/sprite_01.png";
+import sprite_footer_01 from "assets/imgs/sprite_footer_01.png";
+import sprite_footer_02 from "assets/imgs/sprite_footer_02.png";
 
 const FooterWrapper = styled.div`
   background-color: #f2f2f2;
@@ -19,6 +20,7 @@ const FooterWrapper = styled.div`
 `;
 
 const ContentLeft = styled.div`
+  padding-top: 15px;
   ul {
     display: flex;
     li {
@@ -65,51 +67,63 @@ const ContentLeft = styled.div`
 `;
 
 const ContentRight = styled.div`
-  display: flex;
-  .searchbar-box {
-    position: relative;
+  margin-top: 33px;
+  width: 420px;
+  height: 70px;
+  ul {
     display: flex;
-    width: 158px;
-    height: 32px;
-    margin-top: 19px;
-    background-color: #fff;
-    border-radius: 32px;
-    background-image: url(${sprite01});
-    background-position: 0 -99px;
-    .search {
-      width: 70%;
-      height: 50%;
-      margin: 8px 0 0 30px;
+    justify-content: space-between;
+    li a {
+      display: block;
     }
-  }
-
-  .center-btn {
-    width: 90px;
-    height: 32px;
-    margin: 19px 0 0 12px;
-    box-sizing: border-box;
-    padding-left: 16px;
-    line-height: 33px;
-    border: 1px solid #4f4f4f;
-    border-radius: 20px;
-    color: #fff;
-    &:hover {
-      cursor: pointer;
-      border-color: #fff;
+    /* 第一排图片链接样式 */
+    &:first-child {
+      margin-bottom: 5px;
+      li a {
+        width: 50px;
+        height: 50px;
+        background-size: 114px;
+      }
     }
-  }
-
-  .login-btn {
-    width: 28px;
-    height: 45px;
-    line-height: 25px;
-    margin: 23px 0 0 20px;
-    padding-right: 22px;
-    color: #787878;
-    &:hover {
-      cursor: pointer;
-      color: #fff;
-      text-decoration: underline;
+    /* 第二排图片链接样式 */
+    &:last-child li a {
+      width: 50px;
+      height: 10px;
+      background-size: 170px;
+      &:hover {
+        cursor: default;
+      }
+    }
+    /* 所有图片链接精灵图 */
+    .self-media {
+      background: url(${sprite_footer_02}) no-repeat 0 -55px;
+    }
+    .user-verify {
+      background: url(${sprite_footer_02}) no-repeat -65px -110px;
+    }
+    .independent-musician {
+      background: url(${sprite_footer_02}) no-repeat 0 0;
+    }
+    .like {
+      background: url(${sprite_footer_02}) no-repeat -65px -55px;
+    }
+    .video-reward {
+      background: url(${sprite_footer_02}) no-repeat 0 -110px;
+    }
+    .self-media-text {
+      background: url(${sprite_footer_01}) no-repeat 0 -40px;
+    }
+    .user-verify-text {
+      background: url(${sprite_footer_01}) no-repeat 0 -100px;
+    }
+    .independent-musician-text {
+      background: url(${sprite_footer_01}) no-repeat 0 0;
+    }
+    .like-text {
+      background: url(${sprite_footer_01}) no-repeat 0 -60px;
+    }
+    .video-reward-text {
+      background: url(${sprite_footer_01}) no-repeat 0 -80px;
     }
   }
 `;
