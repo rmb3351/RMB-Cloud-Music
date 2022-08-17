@@ -12,6 +12,10 @@ export function Routes() {
       element: <FindMusic></FindMusic>,
     },
     {
+      path: "/discover",
+      element: <FindMusic></FindMusic>,
+    },
+    {
       path: "/my",
       element: <My></My>,
     },

@@ -4,7 +4,7 @@ import { Input } from "antd";
 
 import { ContentLeft, ContentRight, HeaderWrapper } from "./style";
 import { linkMaps } from "@/common/links-data.js";
-import { renderLinks } from "../../utils/renderLinksFn";
+import { useRenderLinks } from "../../utils/renderLinksFn";
 const RMBAppHeader = memo(() => {
   const [activeName] = useState("nav-active");
   return (
@@ -15,7 +15,7 @@ const RMBAppHeader = memo(() => {
             {/* 这里写内容是为了seo优化更容易搜索到，在样式里将文字缩进调足够大就看不到了 */}
             RMB云音乐
           </a>
-          {renderLinks(linkMaps, activeName)}
+          {useRenderLinks(linkMaps, activeName)}
         </ContentLeft>
         <ContentRight>
           <div className="searchbar-box">

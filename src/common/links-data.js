@@ -34,6 +34,7 @@ const bottomRightUpLinkMaps = [
   { link: "/", title: "视频奖励", comp: "a", className: "video-reward" },
 ];
 
+/* 底部右侧下部链接映射 */
 const bottomRightDownLinkMaps = [
   { link: "/", title: "自媒体", comp: "a", className: "self-media-text" },
   { link: "/", title: "用户认证", comp: "a", className: "user-verify-text" },
@@ -46,9 +47,28 @@ const bottomRightDownLinkMaps = [
   { link: "/", title: "赞赏", comp: "a", className: "like-text" },
   { link: "/", title: "视频奖励", comp: "a", className: "video-reward-text" },
 ];
+
+/* 发现音乐下子菜单的链接映射 */
+const DiscoverLinkMaps = [
+  {
+    link: "/discover",
+    title: "推荐",
+    comp: "NavLink",
+  },
+  { link: "/discover/toplist", title: "排行榜", comp: "NavLink" },
+  {
+    link: "/discover/playlist",
+    title: "歌单",
+    comp: "NavLink",
+  },
+  { link: "/discover/djradio", title: "主播电台", comp: "NavLink" },
+  { link: "/discover/artist", title: "歌手", comp: "NavLink" },
+  { link: "/discover/album", title: "新碟上架", comp: "NavLink" },
+];
 export {
   linkMaps,
   bottomLeftLinkMaps,
   bottomRightUpLinkMaps,
   bottomRightDownLinkMaps,
+  DiscoverLinkMaps,
 };

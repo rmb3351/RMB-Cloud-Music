@@ -5,14 +5,14 @@ import {
   bottomRightUpLinkMaps,
   bottomRightDownLinkMaps,
 } from "@/common/links-data.js";
-import { renderLinks } from "../../utils/renderLinksFn";
+import { useRenderLinks } from "../../utils/renderLinksFn";
 
 const RMBAppFooter = memo(() => {
   return (
     <FooterWrapper>
       <div className="content wrap-v2">
         <ContentLeft>
-          {renderLinks(bottomLeftLinkMaps)}
+          {useRenderLinks(bottomLeftLinkMaps)}
           <div className="sec-line">
             <span className="copyright">CoderRMB版权所有©1993-2022</span>
             <span>京州苦读科技有限公司运营：</span>
@@ -26,8 +26,8 @@ const RMBAppFooter = memo(() => {
           <span>不联网宗教信息服务许可怔：汉（2022）0000120</span>
         </ContentLeft>
         <ContentRight>
-          {renderLinks(bottomRightUpLinkMaps)}
-          {renderLinks(bottomRightDownLinkMaps)}
+          {useRenderLinks(bottomRightUpLinkMaps)}
+          {useRenderLinks(bottomRightDownLinkMaps)}
         </ContentRight>
       </div>
     </FooterWrapper>
