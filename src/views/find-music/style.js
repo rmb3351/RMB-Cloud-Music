@@ -13,11 +13,20 @@ const TopMenu = styled.div`
     display: flex;
     width: 564px;
     li {
+      height: 34px;
+      line-height: 34px;
       margin: 0 17px;
-      padding: 0 13px;
       a {
-        line-height: 34px;
-        height: 34px;
+        display: inline-block;
+        padding: 0 13px;
+        text-decoration: none;
+        height: 21px;
+        line-height: 21px;
+        color: #fff;
+        &:hover {
+          border-radius: 20px;
+          background: #9b0909;
+        }
       }
     }
   }

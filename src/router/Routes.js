@@ -7,12 +7,13 @@ import { My } from "views/my-music";
 import { ShopStore } from "views/shop-store";
 export function Routes() {
   return useRoutes([
+    /* 根路径和discover下的所有路径，都匹配FindMusic组件 */
     {
       path: "/",
       element: <FindMusic></FindMusic>,
     },
     {
-      path: "/discover",
+      path: "/discover/*",
       element: <FindMusic></FindMusic>,
     },
     {

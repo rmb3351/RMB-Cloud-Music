@@ -16,14 +16,20 @@ export function useRenderLinks(links, activeName = "active") {
           <li key={link.title}>
             <NavLink
               to={link.link}
-              className={({ isActive }) =>
+              className={({ isActive }) => {
                 // 如果是discover下的路径，匹配发现音乐
-                pathname.includes("/discover") && link.link === "/"
-                  ? [activeName, link.className].filter(Boolean)
-                  : isActive
-                  ? [activeName, link.className].filter(Boolean)
-                  : null
-              }
+                if (pathname.includes("/discover") && link.link === "/")
+                  return [activeName, link.className].filter(Boolean);
+                // 如果是根路径或/discover的路径，匹配link为/discover的NavLink，即推荐
+                else if (link.link === "/discover") {
+                  if (pathname === "/" || pathname === "/discover")
+                    return [activeName, link.className].filter(Boolean);
+                } else if (isActive) {
+                  return [activeName, link.className].filter(Boolean);
+                } else {
+                  return null;
+                }
+              }}
             >
               {link.title}
             </NavLink>
