@@ -49,7 +49,7 @@ const bottomRightDownLinkMaps = [
 ];
 
 /* 发现音乐下子菜单的链接映射 */
-const DiscoverLinkMaps = [
+const discoverLinkMaps = [
   {
     link: "/discover",
     title: "推荐",
@@ -70,5 +70,5 @@ export {
   bottomLeftLinkMaps,
   bottomRightUpLinkMaps,
   bottomRightDownLinkMaps,
-  DiscoverLinkMaps,
+  discoverLinkMaps,
 };
