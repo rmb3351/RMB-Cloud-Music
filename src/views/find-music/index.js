@@ -6,15 +6,13 @@ import { discoverLinkMaps } from "../../common/links-data";
 import { useRenderLinks } from "../../utils/renderLinksFn";
 import { renderChildComps } from "../../utils/renderChildComps";
 import { findMusicCompsMaps } from "../../common/children-comps";
-import { request } from "../../services/request";
+import { getSomeComments } from "../../services/getFindMusicDatas";
 
 export const FindMusic = memo(() => {
   const [activeName] = useState("discover-link-active");
   const { pathname } = useLocation();
   useEffect(() => {
-    request({
-      url: "comment/music?id=186016&limit=1",
-    })
+    getSomeComments({ id: 186016 })
       .then((res) => console.log("收到响应res", res))
       .catch((err) => console.error("未收到响应err", err));
   }, []);
