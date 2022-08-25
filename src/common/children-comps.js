@@ -1,4 +1,4 @@
-import { RecommendMusic } from "../views/find-music/recommend-music";
+import RecommendMusic from "../views/find-music/recommend-music";
 import { MusicRanking } from "../views/find-music/music-ranking";
 import { SongList } from "../views/find-music/song-list";
 import { DjRadio } from "../views/find-music/dj-radio";

@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const DiscoverWrapper = styled.div`
   background-color: #c20c0c;
-  height: 34px;
 `;
 
 const TopMenu = styled.div`
   box-sizing: border-box;
+  height: 34px;
   padding-left: 180px;
   display: flex;
   ul {
@@ -34,6 +34,7 @@ const TopMenu = styled.div`
 
 const MenuItemContent = styled.div`
   display: flex;
+  background-color: #fff;
   .searchbar-box {
     position: relative;
     display: flex;

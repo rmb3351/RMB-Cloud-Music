@@ -8,6 +8,7 @@ module.exports = {
       components: resolve("src/components"),
       views: resolve("src/views"),
       assets: resolve("src/assets"),
+      services: resolve("src/services"),
     },
   },
 };
