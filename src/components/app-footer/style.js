@@ -59,7 +59,7 @@ const ContentLeft = styled.div`
       display: inline-block;
       width: 14px;
       height: 14px;
-      background: url(https://portrait.gitee.com/uploads/avatars/user/3285/9857196_rmb3351_1640772710.png!avatar30)
+      background: url(https://portrait.gitee.com/uploads/avatars/user/3285/9857196_rmb3351_1640772710.png!avatar200)
         no-repeat;
       background-size: contain;
     }
