@@ -7,7 +7,10 @@ const RecommendMusic = memo(() => {
   // state.findMusic是src/store/reducer.js里combinedReducer里发现音乐部分的reducer
   const { homeBanners } = useSelector(
     (state) => ({
-      homeBanners: state.findMusic.homeBanners,
+      // 这里的state和state下一级的对象都变成了immutable对象，都要直接用api
+      // homeBanners: state.get("findMusic").get("homeBanners"),
+      // getIn:传入数组，顺序读取对应属性
+      homeBanners: state.getIn(["findMusic", "homeBanners"]),
     }),
     shallowEqual
   );
