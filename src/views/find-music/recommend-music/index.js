@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { RecommendWrapper } from "./style";
-import HomeBanners from "./child-cpns/HomeBanners";
+import HomeBanners from "../../../components/home-banners";
+
 const RecommendMusic = memo(() => {
   return (
     <RecommendWrapper>

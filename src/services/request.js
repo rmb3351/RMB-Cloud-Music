@@ -1,6 +1,6 @@
 /* axios的封装 */
 import axios from "axios";
-const DEFAULT_TIMEOUT = 5000;
+const DEFAULT_TIMEOUT = 50000;
 
 /* 定义请求封装的类，在里面分别封装axios请求和get、post的封装后请求 */
 class RMBRequest {

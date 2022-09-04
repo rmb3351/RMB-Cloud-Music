@@ -1,0 +1,22 @@
+.img-item-enter {
+  opacity: 1;
+  outline: none;
+  border: none;
+}
+
+.img-item-exit {
+  opacity: 1;
+  outline: none;
+  border: none;
+  transition: all 3s linear 2s;
+}
+.img-item-exit-active {
+  opacity: 0.6;
+  outline: none;
+  border: none;
+}
+.img-item-exit-done {
+  opacity: 0.6;
+  outline: none;
+  border: none;
+}

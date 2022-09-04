@@ -3,23 +3,31 @@ import download from "assets/imgs/download.png";
 
 const BannerWrappers = styled.div`
   width: 100%;
-  background-color: red;
 `;
 
 const BannerContent = styled.div`
   position: relative;
-  overflow: hidden;
+  display: flex;
 `;
 
 const ContentLeft = styled.div`
+  position: relative;
   width: 730px;
   height: 285px;
-  .contentStyle {
-    height: 160px;
-    color: #fff;
-    line-height: 160px;
-    text-align: center;
-    background: #364d79;
+  .banner-item {
+    overflow: hidden;
+    width: 730px;
+    height: 285px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .banner-image {
+      width: 100%;
+      height: 285px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 `;
 const ContentRight = styled.div`
