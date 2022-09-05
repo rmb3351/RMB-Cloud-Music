@@ -22,10 +22,8 @@ const HomeBanners = memo(() => {
     };
   }, shallowEqual);
 
-  // 设置图片和对应动画效果用到的几个state
+  // 设置图片下标和区分是否是第一次加载（激活首张轮播图的过渡效果）的state
   const [imageIndex, setIndex] = useState(0);
-  const [banner, setBanner] = useState({});
-  const [isIn, setIsIn] = useState(true);
   const [isFirst, setIsFirst] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -37,29 +35,18 @@ const HomeBanners = memo(() => {
   /* 用于自动切换图片的和设置动画的钩子 */
   useEffect(() => {
     if (homeBanners.length) {
-      if (isFirst) {
-        setIsIn(true);
-        setIsFirst(false);
-      } else {
-        setIsIn(false);
-      }
+      if (isFirst) setIsFirst(false);
       timer.current = setTimeout(() => {
         setIndex((imageIndex + 1) % homeBanners.length);
-        setBanner(homeBanners[imageIndex]);
-        setIsIn(true);
       }, 5000);
     }
-  }, [imageIndex, homeBanners, banner, isFirst]);
+  }, [imageIndex, homeBanners, isFirst]);
 
-  function handleClearTimerAndSwitch() {
-    if (homeBanners.length) {
-      setIndex((imageIndex + 1) % homeBanners.length);
-      setBanner(homeBanners[imageIndex]);
-      // 避免切换错乱，清除定时器并修改isIn重新激活动画循环
-      if (timer) {
-        clearTimeout(timer.current);
-        setIsIn(true);
-      }
+  function handleClearTimerAndSwitch(index) {
+    setIndex(index);
+    // 避免切换错乱，清除定时器
+    if (timer) {
+      clearTimeout(timer.current);
     }
   }
 
@@ -67,16 +54,21 @@ const HomeBanners = memo(() => {
     <BannerWrappers>
       <BannerContent className="wrap-v2">
         <ContentLeft>
-          {homeBanners.length ? (
+          {homeBanners.map((banner, index) => (
             <CSSTransition
-              in={isIn}
+              // 除了轮播图刚获取数据的加载，否则实际看到的是下一张，所以激活下一张
+              in={
+                isFirst
+                  ? index === imageIndex
+                  : index === (imageIndex + 1) % homeBanners.length
+              }
               classNames="img-item"
               timeout={5000}
               key={banner.imageUrl}
             >
               <div
+                style={{ transform: `translateY(${-285 * imageIndex}px)` }}
                 className="banner-item"
-                onClick={() => handleClearTimerAndSwitch()}
               >
                 <img
                   src={banner.imageUrl}
@@ -85,7 +77,26 @@ const HomeBanners = memo(() => {
                 ></img>
               </div>
             </CSSTransition>
-          ) : null}
+          ))}
+          <ul className="dots">
+            {homeBanners.map((banner, index) => (
+              <li
+                key={banner.imageUrl}
+                className="dot-li"
+                onClick={() => handleClearTimerAndSwitch(index)}
+              >
+                <span
+                  // 类名这里有问题
+                  className={JSON.stringify({
+                    dot: true,
+                    active: isFirst
+                      ? index === imageIndex
+                      : index === (imageIndex + 1) % homeBanners.length,
+                  })}
+                ></span>
+              </li>
+            ))}
+          </ul>
         </ContentLeft>
         <ContentRight>
           <a

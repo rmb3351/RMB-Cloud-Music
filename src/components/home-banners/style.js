@@ -14,18 +14,44 @@ const ContentLeft = styled.div`
   position: relative;
   width: 730px;
   height: 285px;
+  overflow: hidden;
   .banner-item {
-    overflow: hidden;
     width: 730px;
     height: 285px;
-    position: absolute;
-    top: 0;
-    left: 0;
     .banner-image {
       width: 100%;
       height: 285px;
       &:hover {
         cursor: pointer;
+      }
+    }
+  }
+  .dots {
+    position: absolute;
+    top: 259px;
+    left: 0;
+    width: 730px;
+    height: 20px;
+    text-align: center;
+    .dot-li {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      :hover {
+        cursor: pointer;
+        .dot {
+          background-color: rgb(198, 12, 12);
+        }
+      }
+      .dot {
+        display: block;
+        width: 7px;
+        height: 7px;
+        border-radius: 7px;
+        background-color: rgb(217, 232, 244);
+      }
+      .active {
+        background-color: rgb(198, 12, 12);
       }
     }
   }
