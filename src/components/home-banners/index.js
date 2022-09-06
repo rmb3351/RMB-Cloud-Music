@@ -5,8 +5,9 @@ import { CSSTransition } from "react-transition-group";
 
 import { getHomeBannersAction } from "views/find-music/store/actionCreators";
 import {
-  BannerContent,
   BannerWrappers,
+  BannerControls,
+  BannerContent,
   ContentLeft,
   ContentRight,
 } from "./style";
@@ -24,7 +25,6 @@ const HomeBanners = memo(() => {
 
   // 设置图片下标和区分是否是第一次加载（激活首张轮播图的过渡效果）的state
   const [imageIndex, setIndex] = useState(0);
-  const [isFirst, setIsFirst] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getHomeBannersAction());
@@ -35,81 +35,91 @@ const HomeBanners = memo(() => {
   /* 用于自动切换图片的和设置动画的钩子 */
   useEffect(() => {
     if (homeBanners.length) {
-      if (isFirst) setIsFirst(false);
       timer.current = setTimeout(() => {
         setIndex((imageIndex + 1) % homeBanners.length);
       }, 5000);
     }
-  }, [imageIndex, homeBanners, isFirst]);
+    // , isFirst
+  }, [imageIndex, homeBanners]);
 
   function handleClearTimerAndSwitch(index) {
+    if (index === homeBanners.length) index = 0;
+    else if (index === -1) index = homeBanners.length - 1;
     setIndex(index);
     // 避免切换错乱，清除定时器
-    if (timer) {
+    if (timer.current) {
       clearTimeout(timer.current);
     }
   }
 
   return (
-    <BannerWrappers>
-      <BannerContent className="wrap-v2">
-        <ContentLeft>
-          {homeBanners.map((banner, index) => (
-            <CSSTransition
-              // 除了轮播图刚获取数据的加载，否则实际看到的是下一张，所以激活下一张
-              in={
-                isFirst
-                  ? index === imageIndex
-                  : index === (imageIndex + 1) % homeBanners.length
-              }
-              classNames="img-item"
-              timeout={5000}
-              key={banner.imageUrl}
-            >
-              <div
-                style={{ transform: `translateY(${-285 * imageIndex}px)` }}
-                className="banner-item"
+    <BannerWrappers
+      style={{
+        background: `url(${homeBanners[imageIndex].imageUrl}?imageView&blur=40x20)`,
+      }}
+    >
+      {homeBanners.length ? (
+        <BannerControls className="wrap-v1">
+          <span
+            className="left-arr"
+            onClick={() => handleClearTimerAndSwitch(imageIndex - 1)}
+          ></span>
+          <BannerContent className="wrap-v2">
+            <ContentLeft>
+              {homeBanners.map((banner, index) => (
+                <CSSTransition
+                  // 除了轮播图刚获取数据的加载，否则实际看到的是下一张，所以激活下一张
+                  in={index === imageIndex}
+                  classNames="img-item"
+                  timeout={5000}
+                  key={banner.imageUrl}
+                >
+                  <div
+                    style={{ transform: `translateY(${-285 * imageIndex}px)` }}
+                    className="banner-item"
+                  >
+                    <img
+                      src={banner.imageUrl}
+                      className="banner-image"
+                      alt={banner.imageUrl}
+                    ></img>
+                  </div>
+                </CSSTransition>
+              ))}
+              <ul className="dots">
+                {homeBanners.map((banner, index) => (
+                  <li
+                    key={banner.imageUrl}
+                    className="dot-li"
+                    onClick={() => handleClearTimerAndSwitch(index)}
+                  >
+                    <span
+                      className={["dot", index === imageIndex ? " active" : ""]
+                        .filter(Boolean)
+                        .join(" ")}
+                    ></span>
+                  </li>
+                ))}
+              </ul>
+            </ContentLeft>
+            <ContentRight>
+              <a
+                id="side-download"
+                href="/download"
+                className="btn"
+                hidefocus="true"
               >
-                <img
-                  src={banner.imageUrl}
-                  className="banner-image"
-                  alt={banner.imageUrl}
-                ></img>
-              </div>
-            </CSSTransition>
-          ))}
-          <ul className="dots">
-            {homeBanners.map((banner, index) => (
-              <li
-                key={banner.imageUrl}
-                className="dot-li"
-                onClick={() => handleClearTimerAndSwitch(index)}
-              >
-                <span
-                  // 类名这里有问题
-                  className={JSON.stringify({
-                    dot: true,
-                    active: isFirst
-                      ? index === imageIndex
-                      : index === (imageIndex + 1) % homeBanners.length,
-                  })}
-                ></span>
-              </li>
-            ))}
-          </ul>
-        </ContentLeft>
-        <ContentRight>
-          <a
-            id="side-download"
-            href="/download"
-            className="btn"
-            hidefocus="true"
-          >
-            下载客户端
-          </a>
-          <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
-        </ContentRight>
-      </BannerContent>
+                下载客户端
+              </a>
+              <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
+            </ContentRight>
+          </BannerContent>
+          <span
+            className="right-arr"
+            onClick={() => handleClearTimerAndSwitch(imageIndex + 1)}
+          ></span>
+        </BannerControls>
+      ) : null}
     </BannerWrappers>
   );
 });

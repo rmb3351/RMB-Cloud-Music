@@ -1,8 +1,36 @@
 import styled from "styled-components";
 import download from "assets/imgs/download.png";
+import bannerSprite from "assets/imgs/banner_sprite.png";
 
 const BannerWrappers = styled.div`
   width: 100%;
+`;
+
+const BannerControls = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .left-arr,
+  .right-arr {
+    display: block;
+    width: 37px;
+    height: 63px;
+    background: url(${bannerSprite});
+  }
+  .left-arr {
+    background-position: 0 -360px;
+    &:hover {
+      cursor: pointer;
+      background-position: 0 -434px;
+    }
+  }
+  .right-arr {
+    background-position: 0 -508px;
+    &:hover {
+      cursor: pointer;
+      background-position: 0 -580px;
+    }
+  }
 `;
 
 const BannerContent = styled.div`
@@ -37,6 +65,8 @@ const ContentLeft = styled.div`
       display: inline-block;
       width: 20px;
       height: 20px;
+      text-align: center;
+      line-height: 20px;
       :hover {
         cursor: pointer;
         .dot {
@@ -78,4 +108,10 @@ const ContentRight = styled.div`
   }
 `;
 
-export { BannerWrappers, BannerContent, ContentLeft, ContentRight };
+export {
+  BannerWrappers,
+  BannerControls,
+  BannerContent,
+  ContentLeft,
+  ContentRight,
+};

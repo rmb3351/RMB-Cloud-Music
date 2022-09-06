@@ -1,14 +1,15 @@
 .img-item-enter {
   opacity: 1;
-}
-
-.img-item-exit {
-  opacity: 1;
   transition: opacity 3s linear 2s;
 }
-.img-item-exit-active {
+.img-item-enter-active {
   opacity: 0.5;
 }
-.img-item-exit-done {
+.img-item-enter-done {
   opacity: 0.5;
+}
+
+/* 离开时应该把透明度还原，否则重新进入可能会残余透明度 */
+.img-item-exit {
+  opacity: 1;
 }
