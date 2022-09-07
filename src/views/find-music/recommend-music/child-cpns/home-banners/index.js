@@ -55,7 +55,9 @@ const HomeBanners = memo(() => {
   return (
     <BannerWrappers
       style={{
-        background: `url(${homeBanners[imageIndex].imageUrl}?imageView&blur=40x20)`,
+        background: `url(${
+          homeBanners.length ? homeBanners[imageIndex].imageUrl : ""
+        }?imageView&blur=40x20)`,
       }}
     >
       {homeBanners.length ? (
