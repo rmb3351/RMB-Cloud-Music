@@ -5,7 +5,7 @@ import RMBRcmHeader from "components/recommend-header";
 const RankingList = memo(() => {
   return (
     <RankingWrapper>
-      <RMBRcmHeader></RMBRcmHeader>
+      <RMBRcmHeader title="榜单"></RMBRcmHeader>
     </RankingWrapper>
   );
 });

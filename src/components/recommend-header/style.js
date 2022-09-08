@@ -6,15 +6,37 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 33px;
-  padding: 0 10px 0 34px;
-  background-position: -225px -156px;
   border-bottom: 2px solid #c10d0c;
+  padding: 0 10px 0 0;
 `;
 
 const HeaderLeft = styled.div`
   display: flex;
-  ul {
+  .left-circle {
+    width: 34px;
+    height: 34px;
+    background: url(${sprite02}) no-repeat -225px -156px;
+  }
+  .header-title {
+    float: left;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 28px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .header-tabs {
     display: flex;
+    margin: 7px 0 0 20px;
+    color: #666;
+    .tab-text:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .header-divider {
+      margin: 0 14px;
+    }
   }
 `;
 

@@ -5,7 +5,7 @@ import RMBRcmHeader from "components/recommend-header";
 const NewAlbums = memo(() => {
   return (
     <NewAlbumsWrapper>
-      <RMBRcmHeader></RMBRcmHeader>
+      <RMBRcmHeader title="新碟上架"></RMBRcmHeader>
     </NewAlbumsWrapper>
   );
 });
