@@ -1,8 +1,9 @@
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { HotWrapper } from "./style";
+import { HotWrapper, HotContent } from "./style";
 import RMBRcmHeader from "components/recommend-header";
+import RMBListCover from "components/list-cover";
 import { getSongListsAction } from "views/find-music/store/actionCreators";
 
 const HotRecommend = memo(() => {
@@ -22,13 +23,15 @@ const HotRecommend = memo(() => {
         title="热门推荐"
         categories={["华语", "流行", "摇滚", "民谣", "电子"]}
       ></RMBRcmHeader>
-      <ul>
-        {songLists.map((list) => (
-          <li key={list.id}>
-            <span>{list.name}</span>
-          </li>
-        ))}
-      </ul>
+      <HotContent>
+        <ul>
+          {songLists.map((list) => (
+            <li key={list.id}>
+              <RMBListCover info={list}></RMBListCover>
+            </li>
+          ))}
+        </ul>
+      </HotContent>
     </HotWrapper>
   );
 });
