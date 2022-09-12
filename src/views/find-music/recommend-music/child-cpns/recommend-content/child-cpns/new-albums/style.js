@@ -4,4 +4,6 @@ const NewAlbumsWrapper = styled.div`
   width: 100%;
 `;
 
-export { NewAlbumsWrapper };
+const NewAlbumsContent = styled.div``;
+
+export { NewAlbumsWrapper, NewAlbumsContent };

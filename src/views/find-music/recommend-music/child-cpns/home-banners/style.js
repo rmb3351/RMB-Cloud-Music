@@ -2,9 +2,7 @@ import styled from "styled-components";
 import download from "assets/imgs/download.png";
 import bannerSprite from "assets/imgs/banner_sprite.png";
 
-const BannerWrappers = styled.div`
-  width: 100%;
-`;
+const BannerWrappers = styled.div``;
 
 const BannerControls = styled.div`
   display: flex;

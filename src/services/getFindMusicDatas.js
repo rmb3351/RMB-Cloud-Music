@@ -24,3 +24,20 @@ export function getHotRecommendsSongLists({
 } = {}) {
   return rmbRequest.get("/top/playlist", { order, cat, limit, offset });
 }
+
+/**
+ *
+ * @param area ALL:全部,ZH:华语,EA:欧美,KR:韩国,JP:日本
+ * @param type new:全部 hot:热门,默认为 new
+ * @param  year 年,默认本年
+ * @param  month 月,默认本月
+ * @returns 返回一个封装的get请求
+ */
+export function getHotRecommendsNewAlbums({ area, type, year, month } = {}) {
+  return rmbRequest.get("/top/album", {
+    area,
+    type,
+    year,
+    month,
+  });
+}
