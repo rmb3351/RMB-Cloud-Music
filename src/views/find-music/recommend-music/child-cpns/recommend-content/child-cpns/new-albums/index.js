@@ -1,20 +1,28 @@
 import React, { memo, useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { getHotRecommendsNewAlbums } from "services/getFindMusicDatas";
 import { NewAlbumsWrapper, NewAlbumsContent } from "./style";
 import RMBRcmHeader from "components/recommend-header";
+import { getNewAlbumsAction } from "views/find-music/store/actionCreators";
+import NewAlbumBanners from "./child-cpns/new-album-banners";
 
 const NewAlbums = memo(() => {
+  const { newAlbums } = useSelector(
+    (state) => ({ newAlbums: state.getIn(["findMusic", "newAlbums"]) }),
+    shallowEqual
+  );
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getHotRecommendsNewAlbums().then((res) => {
-      console.log("11111res", res);
-    });
-  }, []);
+    dispatch(getNewAlbumsAction());
+  }, [dispatch]);
 
   return (
     <NewAlbumsWrapper>
       <RMBRcmHeader title="新碟上架"></RMBRcmHeader>
-      <NewAlbumsContent></NewAlbumsContent>
+      <NewAlbumsContent>
+        <NewAlbumBanners newAlbums={newAlbums}></NewAlbumBanners>
+      </NewAlbumsContent>
     </NewAlbumsWrapper>
   );
 });
