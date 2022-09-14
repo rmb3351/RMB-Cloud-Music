@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const ContentWrapper = styled.div`
   display: flex;
+  background: #fff;
 `;
 
 const ContentLeft = styled.div`
