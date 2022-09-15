@@ -52,6 +52,7 @@ const BannerContent = styled.div`
   position: relative;
   width: 645px;
   height: 184px;
+  white-space: nowrap;
   overflow: hidden;
   .banner-item {
     display: inline-block;
@@ -91,6 +92,24 @@ const BannerContent = styled.div`
     }
     .image-icon-play {
       display: none;
+    }
+    .item-album-name,
+    .item-singer-name {
+      line-height: 18px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal;
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    .item-album-name {
+      color: #000;
+    }
+    .item-singer-name {
+      color: #666;
     }
   }
 `;
