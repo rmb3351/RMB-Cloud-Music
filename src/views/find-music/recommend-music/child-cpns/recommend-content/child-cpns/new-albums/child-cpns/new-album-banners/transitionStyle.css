@@ -1,8 +1,7 @@
 .part-item-enter {
-  transition: transform 0.7s linear;
+  transition: transform 0.7s;
 }
 
-/* 离开时应该把透明度还原，否则重新进入可能会残余透明度 */
 .part-item-exit {
-  transition: transform 0.7s linear;
+  transition: transform 0.7s;
 }
