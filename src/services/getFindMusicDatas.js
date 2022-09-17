@@ -41,3 +41,21 @@ export function getHotRecommendsNewAlbums({ area, type, year, month } = {}) {
     month,
   });
 }
+
+/* 获取所有榜单信息 */
+export function getAllLists() {
+  return rmbRequest.get("/toplist");
+}
+
+/**
+ *
+ * @param id 歌单id
+ * @param s 歌单最近的 s 个收藏者,默认为 8
+ * @returns 返回一个封装的get请求
+ */
+export function getListDetail({ id, s } = {}) {
+  return rmbRequest.get("/playlist/detail", {
+    id,
+    s,
+  });
+}
