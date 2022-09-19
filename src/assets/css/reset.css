@@ -152,6 +152,10 @@ button {
   background: url(../imgs/playbar_sprite.png) no-repeat 0 9999px;
 }
 
+.text_hide {
+  text-indent: -9999px;
+}
+
 .progress_bar {
   background: url(../imgs/progress_bar.png) no-repeat 0 9999px;
 }

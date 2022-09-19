@@ -86,7 +86,7 @@ export const getAllListsAction = () => {
 const updateListDataAction = (res, index) => ({
   type: actionTypes.UPDATE_LISTS_DATA,
   index,
-  listData: res.playlist.tracks,
+  listData: res.playlist,
 });
 
 /* 请求单个榜单具体数据的action */

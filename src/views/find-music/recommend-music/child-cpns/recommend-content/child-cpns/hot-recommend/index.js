@@ -15,7 +15,7 @@ const HotRecommend = memo(() => {
   /* 获取songlists的数据 */
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getSongListsAction());
+    dispatch(getSongListsAction({ offset: parseInt(Math.random() * 50) }));
   }, [dispatch]);
   return (
     <HotWrapper>
