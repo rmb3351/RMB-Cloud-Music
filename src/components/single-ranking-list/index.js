@@ -39,8 +39,38 @@ const RMBSingleRankingList = memo((props) => {
           </div>
         </HeaderOthers>
       </ListHeader>
-      <ListContents></ListContents>
-      <ListFooter></ListFooter>
+      <ListContents>
+        <ol className="song-list">
+          {info.tracks.slice(0, 10).map((track, index) => (
+            <li key={track.id} className="song-item">
+              <span className="song-no">{index + 1}</span>
+              <a href="/todo" title={track.name} className="song-name__link">
+                {track.name}
+              </a>
+              <div className="operation-btns">
+                <a href="/todo" className="play-btn text_hide" title="播放">
+                  播放
+                </a>
+                <a
+                  href="/todo"
+                  className="add-btn text_hide"
+                  title="添加到播放列表"
+                >
+                  添加到播放列表
+                </a>
+                <a href="/todo" className="collect-btn text_hide" title="收藏">
+                  收藏
+                </a>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </ListContents>
+      <ListFooter>
+        <a href="/todo" className="footer-link">
+          查看全部&gt;
+        </a>
+      </ListFooter>
     </ListWrapper>
   );
 });
