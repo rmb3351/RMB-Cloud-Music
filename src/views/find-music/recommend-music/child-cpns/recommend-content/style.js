@@ -15,6 +15,13 @@ const ContentLeft = styled.div`
 const ContentRight = styled.div`
   width: 250px;
   border: 1px solid #d3d3d3;
+  .ant-slider-horizontal,
+  .ant-slider-rail,
+  .ant-slider-track,
+  .ant-slider-step,
+  .ant-slider-handle {
+    height: 20px;
+  }
 `;
 
 export { ContentWrapper, ContentLeft, ContentRight };

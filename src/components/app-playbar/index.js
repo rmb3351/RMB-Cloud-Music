@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { Slider } from "antd";
 import PropTypes from "prop-types";
 
 import {
@@ -17,6 +18,48 @@ const RMBPlaybar = memo((props) => {
           <button className="play" title="播放/暂停(p)"></button>
           <button className="next" title="下一首(ctrl+→)"></button>
         </BarControls>
+        <BarCentral>
+          <div className="central-left">
+            <img
+              src="https://p2.music.126.net/z0b7uhQmjXdFqkgBTSpsfA==/109951167891177817.jpg?param=34y34"
+              alt="加载失败"
+            />
+            <a
+              href="https://p2.music.126.net/z0b7uhQmjXdFqkgBTSpsfA==/109951167891177817.jpg?param=34y34"
+              className="album-mask text_hide"
+            >
+              歌曲详情
+            </a>
+          </div>
+          <div className="central-right">
+            <div className="central-right__top">
+              <a
+                href="https://p2.music.126.net/z0b7uhQmjXdFqkgBTSpsfA==/109951167891177817.jpg?param=34y34"
+                className="song-name"
+                title="被人"
+              >
+                被人
+              </a>
+              <a
+                href="https://p2.music.126.net/z0b7uhQmjXdFqkgBTSpsfA==/109951167891177817.jpg?param=34y34"
+                className="song-artist"
+                title="薛之谦"
+              >
+                薛之谦
+              </a>
+              <a
+                href="https://p2.music.126.net/z0b7uhQmjXdFqkgBTSpsfA==/109951167891177817.jpg?param=34y34"
+                className="song-source text_hide"
+                title="来自榜单"
+              >
+                来自榜单
+              </a>
+            </div>
+            <div className="central-right__bottom">
+              <Slider defaultValue={30} />
+            </div>
+          </div>
+        </BarCentral>
       </BarContent>
     </BarWrapper>
   );

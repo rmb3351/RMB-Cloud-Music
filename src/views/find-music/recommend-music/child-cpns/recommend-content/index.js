@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+
 import { ContentWrapper, ContentLeft, ContentRight } from "./style";
 import HotRecommend from "./child-cpns/hot-recommend";
 import NewAlbums from "./child-cpns/new-albums";
