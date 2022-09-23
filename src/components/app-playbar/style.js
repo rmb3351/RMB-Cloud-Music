@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import playbar_sprite from "assets/imgs/playbar_sprite.png";
+import sprite_icon from "assets/imgs/sprite_icon.png";
+import sprite_lyrics from "assets/imgs/sprite_lyrics.png";
+import progress_bar from "assets/imgs/progress_bar.png";
 
 import cover from "assets/imgs/sprite_cover.png";
-import sprite_02 from "assets/imgs/sprite_02.png";
-import sprite_icon2 from "assets/imgs/sprite_icon2.png";
 
 const BarWrapper = styled.div`
   position: fixed;
@@ -62,7 +63,7 @@ const BarControls = styled.div`
 
 const BarCentral = styled.div`
   display: flex;
-  width: 615px;
+  width: 630px;
   height: 37px;
   .central-left {
     position: relative;
@@ -112,15 +113,98 @@ const BarCentral = styled.div`
       }
     }
     .central-right__bottom {
+      position: relative;
       height: 13px;
-      .progress-bar {
-        width: 500px;
-        height: 13px;
+      .slider {
+        width: 466px;
+        height: 9px;
+        margin: 0;
+        padding: 0;
+        &:hover {
+          cursor: default;
+        }
+        .ant-slider-rail {
+          height: 9px;
+          border-radius: 9px;
+          background: url(${progress_bar}) no-repeat;
+        }
+        .ant-slider-track {
+          position: absolute;
+          height: 9px;
+          background: url(${progress_bar}) no-repeat left -66px;
+          border-radius: 9px;
+        }
+        .ant-slider-handle {
+          position: absolute;
+          top: -3px;
+          width: 22px;
+          height: 24px;
+          border: none;
+          background: url(${sprite_icon}) no-repeat 0 -250px;
+          &:hover {
+            cursor: default;
+            background-position: 0 -280px;
+          }
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    .song-time {
+      position: absolute;
+      top: -3px;
+      right: -84px;
+      color: #797979;
+      text-shadow: 0 1px 0 #121212;
+      em {
+        color: #a1a1a1;
       }
     }
   }
 `;
 
-const BarChoices = styled.div``;
+const BarChoices = styled.div`
+  display: flex;
+  width: 213px;
+  height: 36px;
+  .left-choices {
+    width: 87px;
+    height: 100%;
+    display: flex;
+    a {
+      margin-top: 11px;
+      margin-right: 2px;
+      display: block;
+      width: 25px;
+      height: 25px;
+      background: url(${playbar_sprite}) no-repeat;
+    }
+    .choice-lyrics {
+      background: url(${sprite_lyrics}) no-repeat;
+      :hover {
+        background-position-y: -25px;
+      }
+    }
+    .choice-collect {
+      background-position: -88px -163px;
+      &:hover {
+        background-position-y: -189px;
+      }
+    }
+    .choice-share {
+      background-position: -114px -163px;
+      &:hover {
+        background-position-y: -189px;
+      }
+    }
+  }
+  .right-choices {
+    flex: 1;
+    height: 100%;
+    padding-left: 13px;
+    background-color: green;
+  }
+`;
 
 export { BarWrapper, BarControls, BarChoices, BarCentral, BarContent };

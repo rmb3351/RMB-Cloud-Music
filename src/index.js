@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./App";
-
+import "antd/es/slider/style/index.css";
 import "./assets/css/reset.css";
 import "./assets/css/index.css";
 
