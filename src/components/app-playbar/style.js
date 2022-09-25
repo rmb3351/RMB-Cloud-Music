@@ -4,8 +4,6 @@ import sprite_icon from "assets/imgs/sprite_icon.png";
 import sprite_lyrics from "assets/imgs/sprite_lyrics.png";
 import progress_bar from "assets/imgs/progress_bar.png";
 
-import cover from "assets/imgs/sprite_cover.png";
-
 const BarWrapper = styled.div`
   position: fixed;
   bottom: 0;
@@ -168,18 +166,18 @@ const BarChoices = styled.div`
   display: flex;
   width: 213px;
   height: 36px;
+  a {
+    margin-top: 11px;
+    margin-right: 2px;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(${playbar_sprite}) no-repeat;
+  }
   .left-choices {
     width: 87px;
     height: 100%;
     display: flex;
-    a {
-      margin-top: 11px;
-      margin-right: 2px;
-      display: block;
-      width: 25px;
-      height: 25px;
-      background: url(${playbar_sprite}) no-repeat;
-    }
     .choice-lyrics {
       background: url(${sprite_lyrics}) no-repeat;
       :hover {
@@ -203,7 +201,35 @@ const BarChoices = styled.div`
     flex: 1;
     height: 100%;
     padding-left: 13px;
-    background-color: green;
+    display: flex;
+    background: url(${playbar_sprite}) no-repeat -147px -238px;
+    .choice-volume {
+      background-position: -2px -248px;
+      :hover {
+        background-position-x: -31px;
+      }
+    }
+    .choice-play-mode {
+      background-position: -3px -344px;
+      &:hover {
+        background-position-x: -33px;
+      }
+    }
+    .choice-play-list {
+      width: 59px;
+      box-sizing: border-box;
+      padding-left: 21px;
+      background-position: -42px -68px;
+      &:hover {
+        background-position-y: -98px;
+      }
+      line-height: 27px;
+      text-align: center;
+      color: #666;
+      text-shadow: 0 1px 0 #080707;
+      text-indent: 0;
+      text-decoration: none;
+    }
   }
 `;
 

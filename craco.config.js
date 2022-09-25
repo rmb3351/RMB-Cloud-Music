@@ -9,6 +9,7 @@ module.exports = {
       views: resolve("src/views"),
       assets: resolve("src/assets"),
       services: resolve("src/services"),
+      utils: resolve("src/utils"),
     },
   },
 };

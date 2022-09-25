@@ -1,9 +1,9 @@
 import React, { memo, useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import { RankingWrapper } from "./style";
 import RMBRcmHeader from "components/recommend-header";
 import RMBSingleRankingList from "components/single-ranking-list";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getAllListsAction } from "views/find-music/store/actionCreators";
 
 const RankingList = memo(() => {

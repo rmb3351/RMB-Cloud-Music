@@ -8,7 +8,6 @@ const FooterWrapper = styled.div`
   border-top: 1px solid #d3d3d3;
   .content {
     height: 115px;
-    padding-top: 15px;
     display: flex;
     justify-content: space-between;
     &:nth-child(n) {

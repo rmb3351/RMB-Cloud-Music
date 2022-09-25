@@ -1,9 +1,10 @@
 import rmbRequest from "./request";
 
-export function getSomeComments({ id, limit = 1 }) {
-  return rmbRequest.get("comment/music", { id, limit });
-}
-
+/**
+ *
+ * @param type 资源类型,对应以下类型,默认为 0 即 PC，1: android、2: iphone、3: ipad
+ * @returns 返回一个封装的get请求
+ */
 export function getHomeBanners({ type = 0 } = {}) {
   return rmbRequest.get("/banner", { type });
 }

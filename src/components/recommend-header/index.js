@@ -22,10 +22,8 @@ const RMBRcmHeader = memo((props) => {
       </HeaderLeft>
       <HeaderRight>
         <span className="more">
-          <a href="/discover/playlist/" className="s-fc3">
-            更多
-          </a>
-          <i className="cor s-bg s-bg-6">&nbsp;</i>
+          <a href="/discover/playlist/">更多</a>
+          <i className="cor">&nbsp;</i>
         </span>
       </HeaderRight>
     </HeaderWrapper>
