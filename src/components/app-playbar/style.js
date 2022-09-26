@@ -47,14 +47,25 @@ const BarControls = styled.div`
       background-position: -110px -130px;
     }
   }
-  .play {
+  .play,
+  .pause {
     width: 36px;
     height: 36px;
     margin-top: 0;
-    background-position: 0 -204px;
     &:hover {
       cursor: pointer;
+    }
+  }
+  .play {
+    background-position: 0 -204px;
+    &:hover {
       background-position: -40px -204px;
+    }
+  }
+  .pause {
+    background-position: 0 -165px;
+    &:hover {
+      background-position: -40px -165px;
     }
   }
 `;

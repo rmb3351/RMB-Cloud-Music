@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Slider } from "antd";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
@@ -17,11 +17,19 @@ const RMBPlaybar = memo((props) => {
     (state) => ({ currentSong: state.getIn(["playBar", "currentSong"]) }),
     shallowEqual
   );
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [silderChanging, setSliderChanging] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentSongDetailAction({ ids: 25843036 }));
   }, [dispatch]);
+  /* 改正在播放的歌曲id */
+  useEffect(() => {
+    currentSong.id &&
+      (audioRef.current.src = `https://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`);
+  }, [currentSong]);
   // 音频标签的ref
   const audioRef = useRef();
 
@@ -30,31 +38,46 @@ const RMBPlaybar = memo((props) => {
   let name = "";
   let arName = "";
   let dt = 0;
-  let id = "";
   function handleSongDetail() {
     picUrl = currentSong.al.picUrl;
     name = currentSong.name;
     arName = currentSong.ar[0].name;
     dt = currentSong.dt;
-    id = currentSong.id;
   }
   if (Object.keys(currentSong).length) handleSongDetail();
 
   function handlePlayClick() {
-    audioRef.current.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
-    audioRef.current.play();
+    if (isPlaying) audioRef.current.pause();
+    else audioRef.current.play();
+    setIsPlaying(!isPlaying);
   }
 
   function timeUpdate(e) {
-    console.log(e.currentTarget.currentTime);
+    if (!silderChanging) setCurrentTime(e.currentTarget.currentTime * 1000);
   }
+
+  /* 自定义组件的回调函数需要使用usecallback钩子包装 */
+  const sliderChange = useCallback(
+    (value) => {
+      setSliderChanging(true);
+      setCurrentTime((value / 100) * dt);
+    },
+    [dt]
+  );
+  const sliderAfterChange = useCallback(
+    (value) => {
+      audioRef.current.currentTime = currentTime / 1000;
+      setSliderChanging(false);
+    },
+    [currentTime]
+  );
   return (
     <BarWrapper>
       <BarContent className="wrap-v2">
         <BarControls>
           <button className="prev" title="上一首(ctrl+←)"></button>
           <button
-            className="play"
+            className={isPlaying ? "pause" : "play"}
             title="播放/暂停(p)"
             onClick={() => handlePlayClick()}
           ></button>
@@ -84,9 +107,16 @@ const RMBPlaybar = memo((props) => {
               </a>
             </div>
             <div className="central-right__bottom">
-              <Slider defaultValue={30} className="slider" />
+              <Slider
+                defaultValue={30}
+                className="slider"
+                value={(currentTime / dt) * 100}
+                onChange={sliderChange}
+                onAfterChange={sliderAfterChange}
+              />
               <span className="song-time">
-                <em>00:00</em> / {formatDate(dt, "mm:ss")}
+                <em>{formatDate(currentTime, "mm:ss")}</em> /{" "}
+                {formatDate(dt, "mm:ss")}
               </span>
             </div>
           </div>
