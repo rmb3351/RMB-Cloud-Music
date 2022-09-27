@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Slider } from "antd";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import PropTypes from "prop-types";
 
 import {
   BarWrapper,
@@ -53,7 +52,7 @@ const RMBPlaybar = memo((props) => {
   }
 
   function timeUpdate(e) {
-    if (!silderChanging) setCurrentTime(e.currentTarget.currentTime * 1000);
+    if (!silderChanging) setCurrentTime(audioRef.current.currentTime * 1000);
   }
 
   /* 自定义组件的回调函数需要使用usecallback钩子包装 */
@@ -66,10 +65,13 @@ const RMBPlaybar = memo((props) => {
   );
   const sliderAfterChange = useCallback(
     (value) => {
-      audioRef.current.currentTime = currentTime / 1000;
+      const slideCurrentTime = (value / 100) * dt;
+      /* setState异步，所以下面直接用currentTime不能正确设置播放进度 */
+      setCurrentTime(slideCurrentTime);
+      audioRef.current.currentTime = slideCurrentTime / 1000;
       setSliderChanging(false);
     },
-    [currentTime]
+    [dt]
   );
   return (
     <BarWrapper>
@@ -108,11 +110,11 @@ const RMBPlaybar = memo((props) => {
             </div>
             <div className="central-right__bottom">
               <Slider
-                defaultValue={30}
                 className="slider"
                 value={(currentTime / dt) * 100}
                 onChange={sliderChange}
                 onAfterChange={sliderAfterChange}
+                tooltip={{ open: false, visible: false }}
               />
               <span className="song-time">
                 <em>{formatDate(currentTime, "mm:ss")}</em> /{" "}
@@ -154,13 +156,5 @@ const RMBPlaybar = memo((props) => {
     </BarWrapper>
   );
 });
-
-/* 限制props的属性和给默认值 */
-RMBPlaybar.propTypes = {
-  info: PropTypes.object.isRequired,
-};
-RMBPlaybar.defaultProps = {
-  info: {},
-};
 
 export default RMBPlaybar;

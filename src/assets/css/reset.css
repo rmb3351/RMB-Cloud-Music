@@ -168,3 +168,7 @@ button {
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
 }
+
+.ant-tooltip-content {
+  display: none;
+}
