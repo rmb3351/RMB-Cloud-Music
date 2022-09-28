@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
 import {
   ListHeader,
@@ -9,9 +10,15 @@ import {
   HeaderImg,
   HeaderOthers,
 } from "./style";
+import { getCurrentSongDetailAction } from "../app-playbar/store/actionCreators";
 const RMBSingleRankingList = memo((props) => {
   // 需要限制categories类型
   const { info } = props;
+  const dispatch = useDispatch();
+  function playSong(songId, e) {
+    e.preventDefault();
+    dispatch(getCurrentSongDetailAction({ ids: songId }));
+  }
   return (
     <ListWrapper>
       <ListHeader>
@@ -48,7 +55,12 @@ const RMBSingleRankingList = memo((props) => {
                 {track.name}
               </a>
               <div className="operation-btns">
-                <a href="/todo" className="play-btn text_hide" title="播放">
+                <a
+                  href="/todo"
+                  className="play-btn text_hide"
+                  title="播放"
+                  onClick={(e) => playSong(track.id, e)}
+                >
                   播放
                 </a>
                 <a

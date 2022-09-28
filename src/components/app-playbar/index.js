@@ -26,8 +26,11 @@ const RMBPlaybar = memo((props) => {
   }, [dispatch]);
   /* 改正在播放的歌曲id */
   useEffect(() => {
-    currentSong.id &&
-      (audioRef.current.src = `https://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`);
+    if (currentSong.id) {
+      audioRef.current.src = `https://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`;
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
   }, [currentSong]);
   // 音频标签的ref
   const audioRef = useRef();
