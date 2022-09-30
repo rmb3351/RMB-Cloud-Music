@@ -2,8 +2,13 @@
 const UPDATE_CURRENT_SONG_DETAIL = "playbar/updateCurrentSongDetail";
 const UPDATE_CURRENT_SONG_INDEX = "playbar/updateCurrentSongIndex";
 const UPDATE_CURRENT_SONG_LIST = "playbar/updateCurrentSongList";
+const UPDATE_CURRENT_PLAY_MODE = "playbar/updatePlayMode";
+
+const PLAY_MODES = ["loop", "single", "random"];
 export {
   UPDATE_CURRENT_SONG_DETAIL,
   UPDATE_CURRENT_SONG_INDEX,
   UPDATE_CURRENT_SONG_LIST,
+  UPDATE_CURRENT_PLAY_MODE,
+  PLAY_MODES,
 };

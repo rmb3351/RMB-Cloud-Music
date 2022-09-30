@@ -41,3 +41,9 @@ const updateCurrentSongListAction = (currentSongList) => ({
   type: actionTypes.UPDATE_CURRENT_SONG_LIST,
   currentSongList,
 });
+
+/* 给播放模式的state赋值的action */
+export const updatePlayModeAction = (index) => ({
+  type: actionTypes.UPDATE_CURRENT_PLAY_MODE,
+  playMode: actionTypes.PLAY_MODES[index],
+});

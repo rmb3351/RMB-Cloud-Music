@@ -6,6 +6,7 @@ const defaultState = Map({
   currentSong: {},
   currentSongIndex: 0,
   currentSongList: [],
+  playMode: actionTypes.PLAY_MODES[0],
 });
 
 export const reducer = (state = defaultState, action) => {
@@ -16,6 +17,8 @@ export const reducer = (state = defaultState, action) => {
       return state.set("currentSongIndex", action.currentSongIndex);
     case actionTypes.UPDATE_CURRENT_SONG_LIST:
       return state.set("currentSongList", action.currentSongList);
+    case actionTypes.UPDATE_CURRENT_PLAY_MODE:
+      return state.set("playMode", action.playMode);
     default:
       return state;
   }

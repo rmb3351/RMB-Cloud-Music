@@ -9,16 +9,23 @@ import {
   BarCentral,
   BarContent,
 } from "./style";
-import { getCurrentSongDetailAction } from "./store/actionCreators";
+import {
+  getCurrentSongDetailAction,
+  updatePlayModeAction,
+} from "./store/actionCreators";
 import { formatDate } from "utils/dataFormat";
 const RMBPlaybar = memo((props) => {
-  const { currentSong } = useSelector(
-    (state) => ({ currentSong: state.getIn(["playBar", "currentSong"]) }),
+  const { currentSong, playMode } = useSelector(
+    (state) => ({
+      currentSong: state.getIn(["playBar", "currentSong"]),
+      playMode: state.getIn(["playBar", "playMode"]),
+    }),
     shallowEqual
   );
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [silderChanging, setSliderChanging] = useState(false);
+  const [playModeIndex, setPlayModeIndex] = useState(0);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,7 +36,7 @@ const RMBPlaybar = memo((props) => {
     if (currentSong.id) {
       audioRef.current.src = `https://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`;
       audioRef.current.play();
-      setIsPlaying(true);
+      if (currentSong.id !== 25843036) setIsPlaying(true);
     }
   }, [currentSong]);
   // 音频标签的ref
@@ -76,6 +83,19 @@ const RMBPlaybar = memo((props) => {
     },
     [dt]
   );
+
+  const playModeCNMaps = {
+    loop: "循环",
+    single: "单曲循环",
+    random: "随机",
+  };
+  function changePlayMode(e) {
+    e.preventDefault();
+    const curPlayModeIndex = (playModeIndex + 1) % 3;
+    setPlayModeIndex(curPlayModeIndex);
+    dispatch(updatePlayModeAction(curPlayModeIndex));
+  }
+
   return (
     <BarWrapper>
       <BarContent className="wrap-v2">
@@ -146,8 +166,13 @@ const RMBPlaybar = memo((props) => {
             <a href="/todo" className="choice-volume text_hide">
               音量
             </a>
-            <a href="/todo" className="choice-play-mode text_hide" title="循环">
-              循环
+            <a
+              href="/todo"
+              className={`play-mode-${playMode} text_hide`}
+              title={playModeCNMaps[playMode]}
+              onClick={(e) => changePlayMode(e)}
+            >
+              {playModeCNMaps[playMode]}
             </a>
             <a href="/todo" className="choice-play-list" title="播放列表">
               5

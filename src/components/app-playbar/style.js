@@ -220,10 +220,22 @@ const BarChoices = styled.div`
         background-position-x: -31px;
       }
     }
-    .choice-play-mode {
+    .play-mode-loop {
       background-position: -3px -344px;
       &:hover {
         background-position-x: -33px;
+      }
+    }
+    .play-mode-single {
+      background-position: -66px -344px;
+      &:hover {
+        background-position-x: -93px;
+      }
+    }
+    .play-mode-random {
+      background-position: -66px -248px;
+      &:hover {
+        background-position-x: -93px;
       }
     }
     .choice-play-list {
