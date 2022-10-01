@@ -47,3 +47,27 @@ export const updatePlayModeAction = (index) => ({
   type: actionTypes.UPDATE_CURRENT_PLAY_MODE,
   playMode: actionTypes.PLAY_MODES[index],
 });
+
+/* 处理歌曲切换的action，tag为1或-1 */
+export const updateCurrentSongAction = (tag) => {
+  return (dispatch, getState) => {
+    const playMode = getState().getIn(["playBar", "playMode"]);
+    const songList = getState().getIn(["playBar", "currentSongList"]);
+    let songIndex = getState().getIn(["playBar", "currentSongIndex"]);
+    let nextSongIndex;
+    /* 随机时随机切换，否则按列表切换 */
+    if (playMode === actionTypes.PLAY_MODES[2]) {
+      // 一直随机到和现在这首不相同为止
+      do {
+        nextSongIndex = Math.floor(Math.random() * songList.length);
+      } while (nextSongIndex === songIndex && songList.length > 1);
+    } else {
+      // 按照列表的上一首或下一首
+      nextSongIndex = songIndex + tag;
+      if (nextSongIndex === songList.length) nextSongIndex = 0;
+      else if (nextSongIndex === -1) nextSongIndex = songList.length - 1;
+    }
+    dispatch(updateCurrentSongIndexAction(nextSongIndex));
+    dispatch(updateCurrentSongDetailAction(songList[nextSongIndex]));
+  };
+};
