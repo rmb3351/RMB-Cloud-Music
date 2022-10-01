@@ -7,6 +7,8 @@ const defaultState = Map({
   currentSongIndex: 0,
   currentSongList: [],
   playMode: actionTypes.PLAY_MODES[0],
+  currentLyric: [],
+  currentLyricList: [],
 });
 
 export const reducer = (state = defaultState, action) => {
@@ -19,6 +21,10 @@ export const reducer = (state = defaultState, action) => {
       return state.set("currentSongList", action.currentSongList);
     case actionTypes.UPDATE_CURRENT_PLAY_MODE:
       return state.set("playMode", action.playMode);
+    case actionTypes.UPDATE_CURRENT_LYRIC_DETAIL:
+      return state.set("currentLyric", action.currentLyric);
+    case actionTypes.UPDATE_CURRENT_LYRIC_LIST:
+      return state.set("currentLyricList", action.currentLyricList);
     default:
       return state;
   }

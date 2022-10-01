@@ -44,3 +44,25 @@ export function formatDate(date, fmt) {
   }
   return fmt;
 }
+
+// 歌词格式化工具函数
+export function lyricsFormat(lyrics) {
+  const originLyrics = lyrics.split("\n");
+  const formattedLyrics = [];
+  // 获取分、秒、毫秒数
+  const lyricsReg = /\[(\d{2}):(\d{2}).(\d{2,3})\]/;
+  for (const lyric of originLyrics) {
+    if (!lyric.trim().length) continue;
+    const times = lyricsReg.exec(lyric);
+    if (!times) continue;
+    // 字符串型数字转毫秒数
+    const time =
+      times[1] * 60 * 1000 +
+      times[2] * 1000 +
+      (times[3].length === 3 ? times[3] * 1 : times[3] * 10);
+    // 替换掉数字内容，获取该句歌词
+    const content = lyric.replace(lyricsReg, "").trim();
+    formattedLyrics.push({ time, content });
+  }
+  return formattedLyrics;
+}
