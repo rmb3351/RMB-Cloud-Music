@@ -1,10 +1,12 @@
+import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
-import { DownLoad } from "views/download";
-import { FindMusic } from "views/find-music";
-import { Friend } from "views/friend";
-import { Musician } from "views/musician";
-import { My } from "views/my-music";
-import { ShopStore } from "views/shop-store";
+
+const DownLoad = lazy(() => import("views/download"));
+const FindMusic = lazy(() => import("views/find-music"));
+const Friend = lazy(() => import("views/friend"));
+const Musician = lazy(() => import("views/musician"));
+const My = lazy(() => import("views/my-music"));
+const ShopStore = lazy(() => import("views/shop-store"));
 export function Routes() {
   return useRoutes([
     /* 根路径和discover下的所有路径，都匹配FindMusic组件 */

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { Slider } from "antd";
+import { Slider, message } from "antd";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import {
@@ -17,11 +17,19 @@ import {
 import { formatDate } from "utils/dataFormat";
 const RMBPlaybar = memo((props) => {
   /* 组件和redux内部的state */
-  const { currentSong, playMode, currentSongList } = useSelector(
+  const {
+    currentSong,
+    playMode,
+    currentSongList,
+    currentSongIndex,
+    currentLyricList,
+  } = useSelector(
     (state) => ({
       currentSong: state.getIn(["playBar", "currentSong"]),
       playMode: state.getIn(["playBar", "playMode"]),
       currentSongList: state.getIn(["playBar", "currentSongList"]),
+      currentSongIndex: state.getIn(["playBar", "currentSongIndex"]),
+      currentLyricList: state.getIn(["playBar", "currentLyricList"]),
     }),
     shallowEqual
   );
@@ -89,7 +97,29 @@ const RMBPlaybar = memo((props) => {
 
   /* 原生组件回调 */
   function timeUpdate(e) {
-    if (!silderChanging) setCurrentTime(audioRef.current.currentTime * 1000);
+    // 更新歌曲播放时间
+    const currentTimsMS = audioRef.current.currentTime * 1000;
+    if (!silderChanging) setCurrentTime(currentTimsMS);
+    /* 更新当前歌词:1.默认返回第一条歌词
+    2.如果歌词列表不是默认的暂无歌词，则根据每条歌词的时间和下标判断返回的歌词
+    3.antd的message展示歌词 */
+    const curSongLyrics = currentLyricList[currentSongIndex];
+    if (!curSongLyrics) return;
+    let curLyric = curSongLyrics[0];
+    if (curSongLyrics.length > 1)
+      for (let i = 0; i < curSongLyrics.length; i++) {
+        if (curSongLyrics[i].time > currentTimsMS) {
+          if (i === 0) curLyric = curSongLyrics[i];
+          else curLyric = curSongLyrics[i - 1];
+          break;
+        } else if (i === curSongLyrics.length - 1) curLyric = curSongLyrics[i];
+      }
+    message.open({
+      key: "curLyric",
+      duration: 0,
+      content: curLyric.content,
+      className: "lyric-class",
+    });
   }
   function playEnded() {
     if (playModeIndex === 1) {

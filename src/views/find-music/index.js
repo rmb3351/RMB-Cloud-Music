@@ -7,7 +7,7 @@ import { useRenderLinks } from "../../utils/renderLinksFn";
 import { renderChildComps } from "../../utils/renderChildComps";
 import { findMusicCompsMaps } from "../../common/children-comps";
 
-export const FindMusic = memo(() => {
+const FindMusic = memo(() => {
   const [activeName] = useState("discover-link-active");
   const { pathname } = useLocation();
   return (
@@ -21,3 +21,5 @@ export const FindMusic = memo(() => {
     </DiscoverWrapper>
   );
 });
+
+export default FindMusic;

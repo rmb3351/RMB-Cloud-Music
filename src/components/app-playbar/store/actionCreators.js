@@ -35,16 +35,28 @@ export const getCurrentSongDetailAction = ({ ids } = {}) => {
         dispatch(updateCurrentSongDetailAction(requestSong));
         dispatch(updateCurrentSongListAction(songListNew));
         dispatch(updateCurrentSongIndexAction(songListNew.length - 1));
-        /* 成功获取歌曲后，再匹配歌词，如果获取歌词失败，添加空数组，保证和歌曲列表对应 */
-        getLyricsDetail({ id: ids }).then((res) => {
-          let requestLyrics = [];
-          if (res.lrc?.lyric) {
-            requestLyrics = lyricsFormat(res.lrc.lyric);
-          }
-          const lyricListNew = [...lyricList, requestLyrics];
-          dispatch(updateCurrentLyricDetailAction(requestLyrics));
-          dispatch(updateCurrentLyricListAction(lyricListNew));
-        });
+        /* 成功获取歌曲后，再匹配歌词，如果获取歌词失败，添加默认歌词数组，保证和歌曲列表对应 */
+        getLyricsDetail({ id: ids })
+          .then((res) => {
+            let requestLyrics = [
+              { time: Number.MAX_SAFE_INTEGER, content: "暂无歌词" },
+            ];
+            if (res.lrc?.lyric) {
+              requestLyrics = lyricsFormat(res.lrc.lyric);
+            }
+            const lyricListNew = [...lyricList, requestLyrics];
+            dispatch(updateCurrentLyricDetailAction(requestLyrics));
+            dispatch(updateCurrentLyricListAction(lyricListNew));
+          })
+          .catch((err) => {
+            let requestLyrics = [
+              { time: Number.MAX_SAFE_INTEGER, content: "暂无歌词" },
+            ];
+            dispatch(updateCurrentLyricDetailAction(requestLyrics));
+            dispatch(
+              updateCurrentLyricListAction([...lyricList, requestLyrics])
+            );
+          });
       });
     }
   };
